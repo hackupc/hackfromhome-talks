@@ -1,0 +1,37 @@
+.agendaContainer{
+    margin: 4rem;
+
+    .agendaTitle{
+        margin: 1rem;
+    }
+
+    .agendaTable{
+        margin: 1rem;
+
+        .agendaTableHeader{
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            width: 100%;
+
+            .agendaTableNameHeader{
+                padding: 1rem;
+            }
+
+            .agendaTableAddressHeader{
+                padding: 1rem;
+            }
+
+            .agendaTableTelephoneHeader{
+                padding: 1rem;
+            }
+
+            .agendaTableEmailHeader{
+                padding: 1rem;
+            }
+
+        }
+
+    }
+
+}
