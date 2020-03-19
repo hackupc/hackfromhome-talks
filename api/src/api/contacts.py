@@ -35,7 +35,18 @@ def post():
 
 
 def put(contact_id):
-    return 'OK', 200
+    request_json = request.json
+    name = response.get('name', request_json)
+    last_name = response.get('last_name', request_json)
+    image_url = response.get('image_url', request_json)
+    address = response.get('address', request_json)
+    phone_number = response.get('phone_number', request_json)
+    email = response.get('email', request_json)
+    contact_edited = contact_service.edit(contact_id, name, last_name, image_url, address, phone_number, email)
+    if contact_edited:
+        return jsonify(response.make(error=False, response=dict(modified=True))), 201
+    else:
+        return jsonify(response.make(error=False, response=dict(modified=False))), 201
 
 
 def delete(contact_id):
