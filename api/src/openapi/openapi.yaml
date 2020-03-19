@@ -1,0 +1,59 @@
+openapi: '3.0.0'
+
+info:
+  description: API for managing agenda contacts.
+  version: '1.0'
+  title: Agenda API
+
+servers:
+  - url: http://localhost:8080
+    description: Development endpoint.
+
+tags:
+  - name: contacts
+    description: endpoint for managing contacts.
+
+paths:
+  /contacts:
+    get:
+      tags:
+        - contacts
+      summary: Retrieves all the contacts or a certain one given its identifier.
+      description: Invoke this endpoint to retrieve all the contacts or a certain one given its identifier.
+      operationId: src.api.contacts.get
+      parameters:
+        - name: contact_id
+          in: query
+          description: Contact identifer.
+          required: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: Standard Agenda API JSON response. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+components:
+  schemas:
+    APIResponse:
+      type: object
+      properties:
+        error:
+          type: boolean
+          description: Whether or not the request was successfully processed or not.
+        message:
+          type: string
+          description: Error message if the request was unsuccessful.
+        response:
+          type: object
+          description: Contains the response data if the request was successful.
