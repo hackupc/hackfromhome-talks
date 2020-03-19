@@ -30,7 +30,110 @@ paths:
             type: string
       responses:
         200:
-          description: Standard Agenda API JSON response. You should check the `error` attribute to determine if there was an error.
+          description: Contact details. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+    post:
+      tags:
+        - contacts
+      summary: Adds a new contact given its information.
+      description: Invoke this endpoint to add a new contact given its information.
+      operationId: src.api.contacts.post
+      requestBody:
+        required: true
+        description: Body wrapper for the request.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactData'
+      responses:
+        201:
+          description: Contact created. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+    put:
+      tags:
+        - contacts
+      summary: Modifies a existing contact given its new information.
+      description: Invoke this endpoint to modifiy a existing contact given its new information.
+      operationId: src.api.contacts.put
+      parameters:
+        - name: contact_id
+          in: query
+          description: Contact identifer.
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        description: Body wrapper for the request.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContactData'
+      responses:
+        200:
+          description: Contact not modified. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        201:
+          description: Contact modified. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        204:
+          description: Contact given not found. You should check the `error` attribute to determine if there was an error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/APIResponse'
+        default:
+          description: Unexpected error.
+          content:
+            application/text:
+              schema:
+                type: string
+                description: Error description.
+
+    delete:
+      tags:
+        - contacts
+      summary: Deletes a certain contact given its identifier.
+      description: Invoke this endpoint to delete a certain contact given its identifier.
+      operationId: src.api.contacts.delete
+      parameters:
+        - name: contact_id
+          in: query
+          description: Contact identifer.
+          required: true
+          schema:
+            type: string
+      responses:
+        204:
+          description: Contact deleted. You should check the `error` attribute to determine if there was an error.
           content:
             application/json:
               schema:
@@ -45,6 +148,56 @@ paths:
 
 components:
   schemas:
+
+    ContactData:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Contact name.
+        last_name:
+          type: string
+          description: Contact last name.
+        image_url:
+          type: string
+          description: An Internet-accessible Image URL to represent the contact.
+        address:
+          type: string
+          description: Contact postal address.
+        phone_number:
+          type: string
+          description: Contact phone number.
+        email:
+          type: string
+          description: Contact email address.
+
+    ContactId:
+      properties:
+        id:
+          type: integer
+          description: Contact identifier.
+
+    APIResponseGet:
+      allOf:
+        - $ref: '#/components/schemas/ContactData'
+        - $ref: '#/components/schemas/ContactId'
+
+    APIResponsePost:
+      oneOf:
+        - $ref: '#/components/schemas/ContactId'
+
+    APIResponsePut:
+      properties:
+        message:
+          type: string
+          description: Message confirming action done.
+
+    APIResponseDelete:
+      properties:
+        message:
+          type: string
+          description: Message confirming action done.
+
     APIResponse:
       type: object
       properties:
@@ -57,3 +210,8 @@ components:
         response:
           type: object
           description: Contains the response data if the request was successful.
+          oneOf:
+            - $ref: '#/components/schemas/APIResponseGet'
+            - $ref: '#/components/schemas/APIResponsePost'
+            - $ref: '#/components/schemas/APIResponsePut'
+            - $ref: '#/components/schemas/APIResponseDelete'
