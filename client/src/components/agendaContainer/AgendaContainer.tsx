@@ -1,11 +1,12 @@
 import React from 'react';
 import Table from '@material-ui/core/Table';
 
-import { IAgendaProps } from './IAgendaContainerProps';
-import { IAgendaState } from './IAgendaContainerState';
 import '../../style/agenda.scss';
 import { IContactModel } from '../../models/IContactModel';
 import { Paper } from '@material-ui/core';
+import Service from '../../services/Service';
+import { IAgendaProps } from './IAgendaContainerProps';
+import { IAgendaState } from './IAgendaContainerState';
 
 export default class AgendaContainer extends React.Component<IAgendaProps, IAgendaState> {
 
@@ -13,7 +14,7 @@ export default class AgendaContainer extends React.Component<IAgendaProps, IAgen
         super(props);
 
         this.state ={
-            friends: new Array<IContactModel>()
+            contacts: new Array<IContactModel>()
         }
     }
 
@@ -29,7 +30,7 @@ export default class AgendaContainer extends React.Component<IAgendaProps, IAgen
                         <div className="agendaTableEmailHeader">Email</div>
                     </div>
                     <div className="agendaTableBody">
-
+                        
                     </div>
                 </div>
             </Paper>
@@ -37,6 +38,9 @@ export default class AgendaContainer extends React.Component<IAgendaProps, IAgen
     }
 
     public componentDidMount() {
-        
+        let service = new Service();
+        service.getContacts().then((contacts: Array<IContactModel>)=>{
+            this.setState({contacts: contacts});
+        });
     }
 }
