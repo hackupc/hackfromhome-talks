@@ -10,24 +10,31 @@
 
         .agendaTableHeader{
             display: flex;
-            justify-content: space-between;
             font-weight: bold;
             width: 100%;
 
             .agendaTableNameHeader{
+                width: 25%;
                 padding: 1rem;
+                padding-left: 0rem;
             }
 
             .agendaTableAddressHeader{
+                width: 25%;
                 padding: 1rem;
+                padding-left: 0rem;
             }
 
             .agendaTableTelephoneHeader{
+                width: 25%;
                 padding: 1rem;
+                padding-left: 0rem;
             }
 
             .agendaTableEmailHeader{
+                width: 25%;
                 padding: 1rem;
+                padding-left: 0rem;
             }
 
         }
