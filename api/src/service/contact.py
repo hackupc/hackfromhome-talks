@@ -3,11 +3,15 @@ from src.model.contact import Contact
 
 
 def get_all():
-    return db_session().query(Contact).all()
+    return [contact.serialize() for contact in db_session().query(Contact).all()]
 
 
 def get_contact(contact_id):
-    return db_session().query(Contact).filter_by(contact_id=contact_id).first()
+    contact = db_session().query(Contact).filter_by(contact_id=contact_id).first()
+    if contact:
+        return contact.serialize()
+    else:
+        return None
 
 
 def add(name, last_name, image_url, address, phone_number, email):
