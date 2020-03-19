@@ -46,7 +46,7 @@ def put(contact_id):
     if contact_edited:
         return jsonify(response.make(error=False, response=dict(modified=True))), 201
     else:
-        return jsonify(response.make(error=False, response=dict(modified=False))), 201
+        return jsonify(response.make(error=False, response=dict(modified=False))), 204
 
 
 def delete(contact_id):
