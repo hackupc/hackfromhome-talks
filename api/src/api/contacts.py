@@ -5,6 +5,11 @@ from src.service import contact as contact_service
 
 
 def get(contact_id=None):
+    """
+    Retrieves all the contacts or a certain one given its identifier.
+    :param contact_id: Contact identifier.
+    :return: List of contacts.
+    """
     try:
         if contact_id is None:
             contact_list = contact_service.get_all()
@@ -20,6 +25,10 @@ def get(contact_id=None):
 
 
 def post():
+    """
+    Adds a new contact given its information.
+    :return: Contact added.
+    """
     try:
         request_json = request.json
         name = response.get('name', request_json)
@@ -41,6 +50,11 @@ def post():
 
 
 def put(contact_id):
+    """
+    Modifies a existing contact given its new information.
+    :param contact_id: Contact identifier.
+    :return: Contact modified.
+    """
     try:
         request_json = request.json
         name = response.get('name', request_json)
@@ -59,6 +73,11 @@ def put(contact_id):
 
 
 def delete(contact_id):
+    """
+    Deletes a certain contact given its identifier.
+    :param contact_id: Contact identifier.
+    :return: Contact deleted.
+    """
     try:
         contact_deleted = contact_service.delete(contact_id)
         if contact_deleted:
