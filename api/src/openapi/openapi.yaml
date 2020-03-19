@@ -92,12 +92,6 @@ paths:
             schema:
               $ref: '#/components/schemas/ContactData'
       responses:
-        200:
-          description: Contact not modified. You should check the `error` attribute to determine if there was an error.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/APIResponse'
         201:
           description: Contact modified. You should check the `error` attribute to determine if there was an error.
           content:
