@@ -50,4 +50,8 @@ def put(contact_id):
 
 
 def delete(contact_id):
-    return 'OK', 204
+    contact_deleted = contact_service.delete(contact_id)
+    if contact_deleted:
+        return jsonify(response.make(error=False, response=dict(deleted=True))), 201
+    else:
+        return jsonify(response.make(error=False, response=dict(deleted=False))), 204
