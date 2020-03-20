@@ -6,37 +6,49 @@
     }
 
     .agendaTable{
-        margin: 1rem;
+        margin-right: 0rem;
 
         .agendaTableHeader{
             display: flex;
             font-weight: bold;
-            width: 100%;
+            width: 95%;
+            margin: 1rem;
 
             .agendaTableNameHeader{
-                width: 25%;
+                width: 23%;
                 padding: 1rem;
                 padding-left: 0rem;
             }
 
             .agendaTableAddressHeader{
-                width: 25%;
+                width: 23%;
                 padding: 1rem;
                 padding-left: 0rem;
             }
 
             .agendaTableTelephoneHeader{
-                width: 25%;
+                width: 23%;
                 padding: 1rem;
                 padding-left: 0rem;
             }
 
             .agendaTableEmailHeader{
-                width: 25%;
+                width: 23%;
                 padding: 1rem;
                 padding-left: 0rem;
             }
 
+            .agendaTableOptionsHeader{
+                width: 8%;
+                padding: 1rem;
+                padding-left: 0rem;
+            }
+
+        }
+
+        .agendaTableBody{
+            max-height: 43rem;
+            overflow-y: scroll;
         }
 
     }
