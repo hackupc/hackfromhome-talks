@@ -7,6 +7,8 @@ import { Paper } from '@material-ui/core';
 import Service from '../../services/Service';
 import { IAgendaProps } from './IAgendaContainerProps';
 import { IAgendaState } from './IAgendaContainerState';
+import AgendaItem from '../agendaItem/AgendaItem';
+import { Divider } from '@material-ui/core';
 
 export default class AgendaContainer extends React.Component<IAgendaProps, IAgendaState> {
 
@@ -28,9 +30,15 @@ export default class AgendaContainer extends React.Component<IAgendaProps, IAgen
                         <div className="agendaTableAddressHeader">Address</div>
                         <div className="agendaTableTelephoneHeader">Telephone</div>
                         <div className="agendaTableEmailHeader">Email</div>
+                        <div className="agendaTableOptionsHeader">Options</div>
                     </div>
+                    <Divider/>
                     <div className="agendaTableBody">
-                        
+                        {this.state.contacts.map((contact: IContactModel)=>{
+                            return(
+                                <AgendaItem contact={contact}/>
+                            );
+                        })}
                     </div>
                 </div>
             </Paper>
