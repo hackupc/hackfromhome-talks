@@ -10,7 +10,7 @@ These three talks given during this hackathon online have the goal of introducin
 
 ### **Implementing APIs with Flask + OpenAPI** by [Albert Suarez](https://github.com/AlbertSuarez)
 
-ToDo
+This talk has the goal of introducing the concept of how to build an API using Flask and OpenAPI. Using Python, we are gonna learn how to interact with a PostgreSQL database using SQLAlchemy, building the project using Connexion and learning what ReDoc is.
 
 ### **Intro to React with TypeScript** by [David Aleu](https://github.com/daleu)
 
