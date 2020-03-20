@@ -14,12 +14,23 @@ services:
       - "./bin/wait-for-it.sh:/bin/wait-for-it"
       - "./api:/app"
     command: wait-for-it agenda_db:5432 -t 0 -- uwsgi --ini uwsgi.ini
+  agenda_client:
+    image: agenda_client
+    container_name: agenda_client
+    build: ./client
+    restart: "no"
+    volumes:
+      - /app/node_modules
   agenda_nginx:
-    image: nginx:latest
+    image: agenda_nginx
     container_name: agenda_nginx
+    build: ./nginx
+    depends_on:
+      - agenda_api
+      - agenda_client
     restart: always
     ports:
-      - "8420:80"
+      - "8080:80"
     volumes:
       - "./bin/wait-for-it.sh:/bin/wait-for-it"
       - "./nginx/conf/nginx.conf:/etc/nginx/nginx.conf"
