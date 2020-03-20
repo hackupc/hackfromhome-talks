@@ -1,7 +1,7 @@
 import React from 'react';
 import Table from '@material-ui/core/Table';
 
-import '../../style/agenda.scss';
+import '../../style/agenda.css';
 import { IContactModel } from '../../models/IContactModel';
 import { Paper } from '@material-ui/core';
 import Service from '../../services/Service';

@@ -1,0 +1,53 @@
+.agendaContainer{
+    margin: 4rem;
+}
+
+.agendaTitle{
+    margin: 1rem;
+}
+
+.agendaTable{
+    margin-right: 0rem;
+}
+
+.agendaTableHeader{
+    display: flex;
+    font-weight: bold;
+    width: 95%;
+    margin: 1rem;
+}
+
+.agendaTableNameHeader{
+    width: 23%;
+    padding: 1rem;
+    padding-left: 0rem;
+}
+
+.agendaTableAddressHeader{
+    width: 23%;
+    padding: 1rem;
+    padding-left: 0rem;
+}
+
+.agendaTableTelephoneHeader{
+    width: 23%;
+    padding: 1rem;
+    padding-left: 0rem;
+}
+
+.agendaTableEmailHeader{
+    width: 23%;
+    padding: 1rem;
+    padding-left: 0rem;
+}
+
+.agendaTableOptionsHeader{
+    width: 8%;
+    padding: 1rem;
+    padding-left: 0rem;
+}
+
+.agendaTableBody{
+    max-height: 43rem;
+    overflow-y: scroll;
+}

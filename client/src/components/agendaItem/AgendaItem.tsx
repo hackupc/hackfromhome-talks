@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../style/agendaItem.scss';
+import '../../style/agendaItem.css';
 import { IAgendaItemProps } from './IAgendaItemProps';
 import { IAgendaItemsState } from './IAgendaItemsState';
 import { Avatar } from '@material-ui/core';
