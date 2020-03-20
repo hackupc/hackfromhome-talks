@@ -8,9 +8,17 @@ These three talks given during this hackathon online have the goal of introducin
 
 ## Talks
 
-1. **Implementing APIs with Flask + OpenAPI** by [Albert Suarez](https://github.com/AlbertSuarez)
-2. **Intro to React with TypeScript** by [David Aleu](https://github.com/daleu)
-3. **Setting up Docker-Compose w/ nginx + ReactJS + uWSGI + PostgreSQL** by [Alaa Moucharrafie](https://github.com/alaamouch)
+### **Implementing APIs with Flask + OpenAPI** by [Albert Suarez](https://github.com/AlbertSuarez)
+
+ToDo
+
+### **Intro to React with TypeScript** by [David Aleu](https://github.com/daleu)
+
+ToDo
+
+### **Setting up Docker-Compose w/ nginx + ReactJS + uWSGI + PostgreSQL** by [Alaa Moucharrafie](https://github.com/alaamouch)
+
+In this workshop you'll learn how to set up a production-ready environment that spins up the API server developed by Albert Suarez (accessed through uWSGI), the PostgreSQL database that the API queries to, the web client developed by David Aleu (ReactJS) and a reverse proxy (nginx) that will serve as an entrypoint to the project.
 
 ## License
 
