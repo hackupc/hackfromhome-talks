@@ -13,7 +13,7 @@ def get(contact_id=None):
     try:
         if contact_id is None:
             contact_list = contact_service.get_all()
-            return response.make(error=False, response=contact_list), 200
+            return response.make(error=False, response=dict(contact_list=contact_list)), 200
         else:
             contact = contact_service.get_contact(contact_id)
             if contact:
