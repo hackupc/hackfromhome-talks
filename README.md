@@ -14,7 +14,7 @@ This talk has the goal of introducing the concept of how to build an API using F
 
 ### **Intro to React with TypeScript** by [David Aleu](https://github.com/daleu)
 
-ToDo
+The goal of this talk is to learn how to create a web application using React with Typescript. In addition, you will learn some useful libraries that could help you when you are developing a web application with React.
 
 ### **Setting up Docker-Compose w/ nginx + ReactJS + uWSGI + PostgreSQL** by [Alaa Moucharrafie](https://github.com/alaamouch)
 

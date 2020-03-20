@@ -27,12 +27,12 @@ export default class AgendaItem extends React.Component<IAgendaItemProps, IAgend
                     <div className="agendaContactTelephone">{this.props.contact.telephone}</div>
                     <div className="agendaContactEmail">{this.props.contact.email}</div>
                     <div className="agendaContactOptions">
-                    <IconButton className="agendaContactOptionsButton" aria-label="delete contact">
-                        <DeleteIcon fontSize="small" />
-                    </IconButton>
-                    <IconButton className="agendaContactOptionsButton" aria-label="edit contact">
-                        <EditIcon fontSize="small" />
-                    </IconButton>
+                        <IconButton className="agendaContactOptionsButton" aria-label="delete contact">
+                            <DeleteIcon fontSize="small" />
+                        </IconButton>
+                        <IconButton className="agendaContactOptionsButton" aria-label="edit contact">
+                            <EditIcon fontSize="small" />
+                        </IconButton>
                     </div>
                 </div>
                 <Divider/>
