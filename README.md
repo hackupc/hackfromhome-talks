@@ -10,7 +10,7 @@ These three talks given during this hackathon online have the goal of introducin
 
 1. **Implementing APIs with Flask + OpenAPI** by [Albert Suarez](https://github.com/AlbertSuarez)
 2. **Intro to React with TypeScript** by [David Aleu](https://github.com/daleu)
-3. **Intro to Docker-Compose: Python + ReactJs + PostgreSQL** by [Alaa Moucharrafie](https://github.com/alaamouch)
+3. **Setting up Docker-Compose w/ nginx + ReactJS + uWSGI + PostgreSQL** by [Alaa Moucharrafie](https://github.com/alaamouch)
 
 ## License
 
