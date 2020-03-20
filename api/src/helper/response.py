@@ -13,7 +13,7 @@ def make(error, message=None, response=None):
     else:
         assert type(response) is dict
         response_dict['response'] = response
-    return response_dict, 200
+    return response_dict
 
 
 def get(attribute_name, json_response, default=None):
