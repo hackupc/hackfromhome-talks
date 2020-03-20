@@ -1,6 +1,3 @@
--- Schema
-CREATE SCHEMA agenda AUTHORIZATION agenda;
-
 -- Sequence
 CREATE SEQUENCE agenda_contact_id_seq
     INCREMENT 1
@@ -10,7 +7,7 @@ CREATE SEQUENCE agenda_contact_id_seq
     CACHE 1;
 
 ALTER SEQUENCE agenda_contact_id_seq
-    OWNER TO agenda;
+    OWNER TO postgres;
 
 -- Table
 CREATE TABLE agenda_contact
@@ -30,7 +27,7 @@ WITH (
 TABLESPACE pg_default;
 
 ALTER TABLE agenda_contact
-    OWNER to agenda;
+    OWNER to postgres;
 
 -- Insert
 INSERT INTO agenda_contact VALUES (default, 'Albert', 'Suarez', 'https://randomuser.me/api/portraits/men/48.jpg', 'Cardedeu', '666543789', 'hi@asuarez.dev');
