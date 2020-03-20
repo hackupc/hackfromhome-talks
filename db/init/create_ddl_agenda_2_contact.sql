@@ -31,3 +31,8 @@ TABLESPACE pg_default;
 
 ALTER TABLE agenda_contact
     OWNER to agenda;
+
+-- Insert
+INSERT INTO agenda_contact VALUES (default, 'Albert', 'Suarez', 'https://randomuser.me/api/portraits/men/48.jpg', 'Cardedeu', '666543789', 'hi@asuarez.dev');
+INSERT INTO agenda_contact VALUES (default, 'David', 'Aleu', 'https://randomuser.me/api/portraits/men/76.jpg', 'La Bisbal de Falset', '657890321', 'hi@alaamouch.dev');
+INSERT INTO agenda_contact VALUES (default, 'Alaa', 'Moucharrafie', 'https://randomuser.me/api/portraits/men/35.jpg', 'Castello', '665775445', 'hi@daleu.dev');
