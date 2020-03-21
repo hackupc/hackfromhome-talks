@@ -20,17 +20,23 @@ export default class AgendaItem extends React.Component<IAgendaItemProps, IAgend
             <div>
                 <div className="agendaContact">
                     <div className="agendaContactNameContainer">
-                        <Avatar src={this.props.contact.image_url} className="agendaContactImage">DA</Avatar>
+                        <Avatar src={this.props.contact.image_url} className="agendaContactImage"></Avatar>
                         <div className="agendaContactName">{this.props.contact.name + ' ' + this.props.contact.surname}</div>
                     </div>
                     <div className="agendaContactAddress">{this.props.contact.address}</div>
                     <div className="agendaContactTelephone">{this.props.contact.telephone}</div>
                     <div className="agendaContactEmail">{this.props.contact.email}</div>
                     <div className="agendaContactOptions">
-                        <IconButton className="agendaContactOptionsButton" aria-label="delete contact">
+                        <IconButton 
+                            onClick={()=>this.onDeleteContact()}
+                            className="agendaContactOptionsButton" 
+                            aria-label="delete contact">
                             <DeleteIcon fontSize="small" />
                         </IconButton>
-                        <IconButton className="agendaContactOptionsButton" aria-label="edit contact">
+                        <IconButton 
+                            onClick={()=>this.onEditContact()}
+                            className="agendaContactOptionsButton" 
+                            aria-label="edit contact">
                             <EditIcon fontSize="small" />
                         </IconButton>
                     </div>
@@ -38,5 +44,13 @@ export default class AgendaItem extends React.Component<IAgendaItemProps, IAgend
                 <Divider/>
             </div>
         );
+    }
+
+    private onEditContact = ():void =>{
+        this.props.editContact(this.props.contact);
+    }
+
+    private onDeleteContact = ():void =>{
+        this.props.deleteContact(this.props.contact);
     }
 }
