@@ -43,7 +43,7 @@ Some initialization variables have been added for not having an empty table at t
 
 ```sql
 INSERT INTO agenda_contact VALUES (
-	default, 
+  default,
   'Albert', 
   'Suarez', 
   'https://randomuser.me/api/portraits/men/48.jpg', 
