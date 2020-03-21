@@ -6,6 +6,12 @@
 
 These three talks given during this hackathon online have the goal of introducing the concept of how to build an application from the backend using an **[API](api/)** to the frontend using **[React](client/)** and deploying them all using **[Docker](docker-compose.yml)**.
 
+## Live demo
+
+- 🎨 [React frontend](https://agenda.hackfromhome.hackersatupc.org/)
+- 🔴 [API endpoint](https://agenda.hackfromhome.hackersatupc.org/api/)
+- 📄 [API documentation](https://agenda.hackfromhome.hackersatupc.org/api/docs)
+
 ## Talks
 
 ### **Implementing APIs with Flask + OpenAPI** 
