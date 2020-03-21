@@ -28,12 +28,13 @@ export default class AgendaItem extends React.Component<IAgendaItemProps, IAgend
                     <div className="agendaContactEmail">{this.props.contact.email}</div>
                     <div className="agendaContactOptions">
                         <IconButton 
+                            onClick={()=>this.onDeleteContact()}
                             className="agendaContactOptionsButton" 
                             aria-label="delete contact">
                             <DeleteIcon fontSize="small" />
                         </IconButton>
                         <IconButton 
-                            onClick={()=>this.OnEditContact()}
+                            onClick={()=>this.onEditContact()}
                             className="agendaContactOptionsButton" 
                             aria-label="edit contact">
                             <EditIcon fontSize="small" />
@@ -45,7 +46,11 @@ export default class AgendaItem extends React.Component<IAgendaItemProps, IAgend
         );
     }
 
-    private OnEditContact = ():void =>{
+    private onEditContact = ():void =>{
         this.props.editContact(this.props.contact);
+    }
+
+    private onDeleteContact = ():void =>{
+        this.props.deleteContact(this.props.contact);
     }
 }

@@ -236,7 +236,7 @@ export default class Service implements IService {
 
     public deleteContact(contact_id: number): Promise<string> {
         return new Promise<string>((resolve, reject)=>{
-
+            resolve("OK");
         });
     }
 }

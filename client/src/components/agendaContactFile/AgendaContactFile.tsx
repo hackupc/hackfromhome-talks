@@ -30,7 +30,7 @@ export default class AgendaContactFile extends React.Component<IAgendaContactFil
                     anchor="right" 
                     open={this.props.panelOpen}
                     className="agendaContactDrawer"
-                    onClose={()=>this.CloseDrawer()}>
+                    onClose={()=>this.closeDrawer()}>
                     <div className="agendaContactDrawerContent">
                         {this.props.contact ?
                             <h2 className="agendaDrawerTitle">Edit Contact</h2> :
@@ -43,7 +43,7 @@ export default class AgendaContactFile extends React.Component<IAgendaContactFil
                                 name="name"
                                 className="agendaContactFileField"
                                 value={this.state.contact ? this.state.contact.name : null}
-                                onChange={this.OnChange}
+                                onChange={this.onChange}
                                 variant="outlined"
                                 error={this.state.error.name}
                             />
@@ -53,7 +53,7 @@ export default class AgendaContactFile extends React.Component<IAgendaContactFil
                                 name="surname"
                                 className="agendaContactFileField"
                                 value={this.state.contact ? this.state.contact.surname : null}
-                                onChange={this.OnChange}
+                                onChange={this.onChange}
                                 variant="outlined"
                                 error={this.state.error.surname}
                             />
@@ -63,7 +63,7 @@ export default class AgendaContactFile extends React.Component<IAgendaContactFil
                                 name="address"
                                 className="agendaContactFileField"
                                 value={this.state.contact ? this.state.contact.address : null}
-                                onChange={this.OnChange}
+                                onChange={this.onChange}
                                 variant="outlined"
                                 error={this.state.error.address}
                             />
@@ -73,7 +73,7 @@ export default class AgendaContactFile extends React.Component<IAgendaContactFil
                                 name="telephone"
                                 className="agendaContactFileField"
                                 value={this.state.contact ? this.state.contact.telephone : null}
-                                onChange={this.OnChange}
+                                onChange={this.onChange}
                                 variant="outlined"
                                 error={this.state.error.telephone}
                             />
@@ -83,7 +83,7 @@ export default class AgendaContactFile extends React.Component<IAgendaContactFil
                                 name="email"
                                 className="agendaContactFileField"
                                 value={this.state.contact ? this.state.contact.email : null}
-                                onChange={this.OnChange}
+                                onChange={this.onChange}
                                 variant="outlined"
                                 error={this.state.error.email}
                             />
@@ -98,7 +98,7 @@ export default class AgendaContactFile extends React.Component<IAgendaContactFil
                                     this.state.contact.email=="" || 
                                     this.state.contact.telephone=="" || 
                                     this.state.contact.email=="")}
-                                onClick={()=>this.OnAddContact()}
+                                onClick={()=>this.onAddContact()}
                                 startIcon={<SaveIcon />}>
                                 Save
                             </Button>
@@ -106,7 +106,7 @@ export default class AgendaContactFile extends React.Component<IAgendaContactFil
                                 color="secondary"
                                 variant="contained"
                                 className="cancelButton"
-                                onClick={()=>this.CloseDrawer()}
+                                onClick={()=>this.closeDrawer()}
                                 startIcon={<CancelIcon />}>
                                 Cancel
                             </Button>
@@ -130,15 +130,15 @@ export default class AgendaContactFile extends React.Component<IAgendaContactFil
         });
     }
 
-    private OnAddContact = ():void =>{
+    private onAddContact = ():void =>{
         this.props.saveContact(this.state.contact);
     }
 
-    private CloseDrawer = ():void =>{
+    private closeDrawer = ():void =>{
         this.props.closePanel();
     }
 
-    private OnChange = (event:any):void =>{
+    private onChange = (event:any):void =>{
         this.setState({
             ...this.state,
             contact:{

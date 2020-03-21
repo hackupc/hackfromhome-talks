@@ -4,4 +4,5 @@ export interface IAgendaState {
     contacts: Array<IContactModel>;
     contact?: IContactModel;
     panelOpen: boolean;
+    dialogOpen: boolean;
 }

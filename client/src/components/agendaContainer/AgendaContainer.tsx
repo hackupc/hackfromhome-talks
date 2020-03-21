@@ -3,7 +3,7 @@ import Table from '@material-ui/core/Table';
 
 import '../../style/agenda.css';
 import { IContactModel } from '../../models/IContactModel';
-import { Paper, Drawer, Button } from '@material-ui/core';
+import { Paper, Drawer, Button, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText } from '@material-ui/core';
 import Service from '../../services/Service';
 import { IAgendaProps } from './IAgendaContainerProps';
 import { IAgendaState } from './IAgendaContainerState';
@@ -27,7 +27,8 @@ export default class AgendaContainer extends React.Component<IAgendaProps, IAgen
 
         this.state ={
             contacts: new Array<IContactModel>(),
-            panelOpen: false
+            panelOpen: false,
+            dialogOpen: false
         }
     }
 
@@ -40,7 +41,7 @@ export default class AgendaContainer extends React.Component<IAgendaProps, IAgen
                         <Button className="agendaAddContact"
                             color="primary"
                             variant="contained"
-                            onClick={()=>this.OnAddContact()}
+                            onClick={()=>this.onAddContact()}
                             startIcon={<AddIcon />}>
                             Add Contact
                         </Button>
@@ -60,7 +61,8 @@ export default class AgendaContainer extends React.Component<IAgendaProps, IAgen
                                     <AgendaItem 
                                         key={index}
                                         contact={contact}
-                                        editContact={this.OnEditContact.bind(this)}/>
+                                        editContact={this.onEditContact.bind(this)}
+                                        deleteContact={this.onDeleteContact.bind(this)}/>
                                 );
                             })}
                         </div>
@@ -69,9 +71,29 @@ export default class AgendaContainer extends React.Component<IAgendaProps, IAgen
                 <AgendaContactFile
                     contact={this.state.contact}
                     panelOpen={this.state.panelOpen}
-                    saveContact={this.SaveContact.bind(this)}
-                    closePanel={this.OnClosePanel.bind(this)}
+                    saveContact={this.onSaveContact.bind(this)}
+                    closePanel={this.onClosePanel.bind(this)}
                 />
+                <Dialog
+                    open={this.state.dialogOpen}
+                    onClose={this.onCloseDialog}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description">
+                    <DialogTitle id="alert-dialog-title">{"Delete Contact"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText id="alert-dialog-description">
+                            Are you sure you want to delete {this.state.contact?.name + ' ' + this.state.contact?.surname} from your list of contacts?
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={this.deleteContact.bind(this)} color="primary" autoFocus>
+                            Yes
+                        </Button>
+                        <Button onClick={this.onCloseDialog.bind(this)} color="primary">
+                            No
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </div>
         );
     }
@@ -83,25 +105,43 @@ export default class AgendaContainer extends React.Component<IAgendaProps, IAgen
         });
     }
 
-    private SaveContact(contact: IContactModel): void {
+    private onSaveContact(contact: IContactModel): void {
         let service = new Service();
-        let that = this;
         service.saveContact(contact).then(()=>{
             service.getContacts().then((contacts: Array<IContactModel>)=>{
-                that.setState({contacts: contacts, panelOpen: false});
+                this.setState({contacts: contacts, panelOpen: false});
             });
         });
     }
 
-    private OnClosePanel(): void {
-        this.setState({panelOpen: false});
-    }
-
-    private OnAddContact(): void {
+    private onAddContact(): void {
         this.setState({panelOpen: true, contact: emptyUser});
     }
 
-    private OnEditContact(contact: IContactModel): void {
+    private onEditContact(contact: IContactModel): void {
         this.setState({panelOpen: true, contact: contact});
+    }
+
+    private onClosePanel(): void {
+        this.setState({panelOpen: false});
+    }
+
+    private onDeleteContact(contact: IContactModel): void {
+        this.setState({dialogOpen: true, contact: contact});
+    }
+
+    private onCloseDialog(): void {
+        this.setState({dialogOpen: false});
+    }
+
+    private deleteContact():void {
+        let service = new Service();
+        if(this.state.contact && this.state.contact.contact_id){
+            service.deleteContact(this.state.contact.contact_id ).then(()=>{
+                service.getContacts().then((contacts: Array<IContactModel>)=>{
+                    this.setState({contacts: contacts, dialogOpen: false});
+                });
+            });
+        }
     }
 }
