@@ -58,6 +58,8 @@ Imagine that you want to show data when a table is rendered, or that we want to 
 - componentDidMount(): runs after the component output has been rendered.
 - componentWillUnmount(): runs after the component output is not showing any more.
 
+Here you can find more information: [React](https://reactjs.org/)
+
 #### Interesting libraries
 
 - [Redux](https://redux.js.org/basics/usage-with-react/)
