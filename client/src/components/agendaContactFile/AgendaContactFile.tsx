@@ -131,7 +131,7 @@ export default class AgendaContactFile extends React.Component<IAgendaContactFil
     }
 
     private onAddContact = ():void =>{
-        this.props.saveContact(this.state.contact);
+        this.props.saveContact(this.props.edit, this.state.contact);
     }
 
     private closeDrawer = ():void =>{

@@ -257,15 +257,107 @@ export default class Service implements IService {
         });
     }
 
-    public saveContact(contact: IContactModel): Promise<string> {
+    public createContact(contact: IContactModel): Promise<string> {
         return new Promise<string>((resolve, reject)=>{
-            resolve("OK");
+            let body = {
+                "address": contact.address,
+                "email": contact.email,
+                "image_url": "https://urgentcarekids.com/wp-content/uploads/2020/03/Coronavirus.png",
+                "last_name": contact.surname,
+                "name": contact.name,
+                "phone_number": contact.telephone
+              };
+
+            let jsonBody = JSON.stringify(body);
+
+            fetch("https://agenda.hackfromhome.hackersatupc.org/api/contacts",{
+                method: 'POST',
+                body:jsonBody,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }
+            })
+            .then(response=>{
+                response.json()
+                .then(data=>{
+                    console.log(data);
+                    if(data.error){
+                        reject(data.error.message);
+                    }
+                    else {
+                        resolve(data.response);
+                    }
+                });
+            })
+            .catch(error=>{
+                reject(error);
+            })
+        });
+    }
+
+    public updateContact(contact: IContactModel): Promise<string> {
+        return new Promise<string>((resolve, reject)=>{
+            let body = {
+                "address": contact.address,
+                "email": contact.email,
+                "last_name": contact.surname,
+                "name": contact.name,
+                "phone_number": contact.telephone
+              };
+
+            let jsonBody = JSON.stringify(body);
+
+            fetch("https://agenda.hackfromhome.hackersatupc.org/api/contacts?contact_id="+contact.contact_id,{
+                method: 'PUT',
+                body:jsonBody,
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }
+            })
+            .then(response=>{
+                response.json()
+                .then(data=>{
+                    console.log(data);
+                    if(data.error){
+                        reject(data.error.message);
+                    }
+                    else {
+                        resolve(data.response);
+                    }
+                });
+            })
+            .catch(error=>{
+                reject(error);
+            })
         });
     }
 
     public deleteContact(contact_id: number): Promise<string> {
         return new Promise<string>((resolve, reject)=>{
-            resolve("OK");
-        });
+            fetch("https://agenda.hackfromhome.hackersatupc.org/api/contacts?contact_id="+contact_id,{
+                method: 'DELETE',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                  }
+            })
+            .then(response=>{
+                response.json()
+                .then(data=>{
+                    console.log(data);
+                    if(data.error){
+                        reject(data.error.message);
+                    }
+                    else {
+                        resolve(data.response);
+                    }
+                });
+            })
+            .catch(error=>{
+                reject(error);
+            })
+        }); 
     }
 }

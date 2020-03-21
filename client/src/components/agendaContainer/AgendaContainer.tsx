@@ -2,6 +2,8 @@ import React from 'react';
 import Table from '@material-ui/core/Table';
 
 import '../../style/agenda.css';
+import 'toastr/build/toastr.css';
+import * as toastr from 'toastr';
 import { IContactModel } from '../../models/IContactModel';
 import { Paper, Drawer, Button, Dialog, DialogActions, DialogTitle, DialogContent, DialogContentText } from '@material-ui/core';
 import Service from '../../services/Service';
@@ -11,6 +13,7 @@ import AgendaItem from '../agendaItem/AgendaItem';
 import AgendaContactFile from '../agendaContactFile/AgendaContactFile';
 import AddIcon from '@material-ui/icons/Add';
 import { Divider } from '@material-ui/core';
+import IService from '../../services/IService';
 
 const emptyUser: IContactModel = {
     name: "",
@@ -22,12 +25,17 @@ const emptyUser: IContactModel = {
 
 export default class AgendaContainer extends React.Component<IAgendaProps, IAgendaState> {
 
+    service: IService;
+
     constructor(props:IAgendaProps) {
         super(props);
+
+        this.service = new Service();
 
         this.state ={
             contacts: new Array<IContactModel>(),
             panelOpen: false,
+            edit: false,
             dialogOpen: false
         }
     }
@@ -71,6 +79,7 @@ export default class AgendaContainer extends React.Component<IAgendaProps, IAgen
                 <AgendaContactFile
                     contact={this.state.contact}
                     panelOpen={this.state.panelOpen}
+                    edit={this.state.edit}
                     saveContact={this.onSaveContact.bind(this)}
                     closePanel={this.onClosePanel.bind(this)}
                 />
@@ -99,27 +108,42 @@ export default class AgendaContainer extends React.Component<IAgendaProps, IAgen
     }
 
     public componentDidMount() {
-        let service = new Service();
-        service.getContacts().then((contacts: Array<IContactModel>)=>{
-            this.setState({contacts: contacts});
-        });
+        this.refreshContacts();
     }
 
-    private onSaveContact(contact: IContactModel): void {
-        let service = new Service();
-        service.saveContact(contact).then(()=>{
-            service.getContacts().then((contacts: Array<IContactModel>)=>{
-                this.setState({contacts: contacts, panelOpen: false});
+    private onSaveContact(edit: boolean, contact: IContactModel): void {
+        if(edit){
+            this.service.updateContact(contact).then(()=>{
+                toastr.success("Contact updated successfully!");
+                this.refreshContacts();
+            })
+            .catch(error=>{
+                toastr.error("Something wrong happened :(");
             });
+        }
+        else {
+            this.service.createContact(contact).then(()=>{
+                toastr.success("New contact created!");
+                this.refreshContacts();
+            })
+            .catch(error=>{
+                toastr.error("Something wrong happened :(");
+            });
+        }
+    }
+
+    private refreshContacts(){
+        this.service.getContacts().then((contacts: Array<IContactModel>)=>{
+            this.setState({contacts: contacts, panelOpen: false});
         });
     }
 
     private onAddContact(): void {
-        this.setState({panelOpen: true, contact: emptyUser});
+        this.setState({panelOpen: true, contact: emptyUser, edit: false});
     }
 
     private onEditContact(contact: IContactModel): void {
-        this.setState({panelOpen: true, contact: contact});
+        this.setState({panelOpen: true, contact: contact, edit: true});
     }
 
     private onClosePanel(): void {
@@ -138,9 +162,13 @@ export default class AgendaContainer extends React.Component<IAgendaProps, IAgen
         let service = new Service();
         if(this.state.contact && this.state.contact.contact_id){
             service.deleteContact(this.state.contact.contact_id ).then(()=>{
+                toastr.success("Contact deleted successfully!");
                 service.getContacts().then((contacts: Array<IContactModel>)=>{
                     this.setState({contacts: contacts, dialogOpen: false});
                 });
+            })
+            .catch(error=>{
+                toastr.error("Something wrong happened :(");
             });
         }
     }
