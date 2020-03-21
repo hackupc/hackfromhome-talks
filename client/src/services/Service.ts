@@ -224,7 +224,36 @@ export default class Service implements IService {
 
     public getContacts(): Promise<Array<IContactModel>> {
         return new Promise<Array<IContactModel>>((resolve, reject)=>{
-            resolve(this.contacts);
+            let headers = new Headers();        
+
+            fetch("https://agenda.hackfromhome.hackersatupc.org/api/contacts",{
+                headers: headers,
+                method: 'GET',
+            })
+            .then(response=>{
+                response.json()
+                .then(data=>{
+
+                    let contacts = new Array<IContactModel>();
+                    data.response.contact_list.forEach((contact:any) => {
+                        let newContact: IContactModel = {
+                            contact_id: contact.id,
+                            image_url: contact.image_url,
+                            name: contact.name,
+                            surname: contact.last_name,
+                            address: contact.address,
+                            telephone: contact.phone_number,
+                            email: contact.email
+                        }
+                        contacts.push(newContact);
+                    });
+
+                    resolve(contacts);
+                });
+            })
+            .catch(error=>{
+                reject(error);
+            })
         });
     }
 

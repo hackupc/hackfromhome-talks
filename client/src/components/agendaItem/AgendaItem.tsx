@@ -20,7 +20,7 @@ export default class AgendaItem extends React.Component<IAgendaItemProps, IAgend
             <div>
                 <div className="agendaContact">
                     <div className="agendaContactNameContainer">
-                        <Avatar src={this.props.contact.image_url} className="agendaContactImage">DA</Avatar>
+                        <Avatar src={this.props.contact.image_url} className="agendaContactImage"></Avatar>
                         <div className="agendaContactName">{this.props.contact.name + ' ' + this.props.contact.surname}</div>
                     </div>
                     <div className="agendaContactAddress">{this.props.contact.address}</div>
