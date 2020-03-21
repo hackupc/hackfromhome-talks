@@ -6,7 +6,9 @@ info:
   title: Agenda API
 
 servers:
-  - url: http://localhost:8080
+  - url: http://agenda.hackfromhome.hackersatupc.org
+    description: Production endpoint.
+  - url: http://localhost:8090
     description: Development endpoint.
 
 tags:

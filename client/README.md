@@ -1,8 +1,77 @@
+# Hack From Home: Client
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Introduction
+
+The goal of this talk is to learn how to create a web application using React with Typescript. In addition, you will learn some useful libraries that could help you when you are developing a web application with React.
+
+## Theory
+
+### What is TypeScript?
+
+TypeScript is an open-source programing language that contains all JavaScript features. In addition, and for this reason is gaining fame, is that you can type all the variables!
+
+Here is an example:
+
+##### JavaScript:
+
+```javascript
+function getContactName(contact_id) {
+    return this.contact[contact_id].name;
+}
+```
+
+##### TypeScript:
+
+```typescript
+function getContactName(contact_id: number): string {
+    return this.contact[contact_id].name;
+}
+```
+
+Here you can find more information: [TypeScript](https://www.typescriptlang.org/)
+
+### What is React?
+
+React is a JavaScript library that helps to build user interfaces. In addition is a component-based library, which means that can split the UI into independent, reusable pieces, and think about each piece in isolation.
+
+Each component have the following features:
+
+- Props: component inputs.
+- State: similar to props, but it is private and fully controlled by the component.
+
+Each component will render each time you change state and props.
+
+Example of component based architecture:
+
+
+
+![Diagram](Diagram.png)
+
+
+
+#### React lifecycle
+
+Imagine that you want to show data when a table is rendered, or that we want to clear this date when the component is not showing any more. To resolve this problem we have the called "lifecycle methods":
+
+- componentDidMount(): runs after the component output has been rendered.
+- componentWillUnmount(): runs after the component output is not showing any more.
+
+Here you can find more information: [React](https://reactjs.org/)
+
+#### Interesting libraries
+
+- [Redux](https://redux.js.org/basics/usage-with-react/)
+- [Material-UI](https://github.com/mui-org/material-ui)
+
+## Set up
 
 In the project directory, you can run:
+
+### `npm i`
+
+Installs all the dependences of the project.
 
 ### `npm start`
 

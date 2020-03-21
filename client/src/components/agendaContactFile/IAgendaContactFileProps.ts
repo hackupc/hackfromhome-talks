@@ -1,9 +1,9 @@
 import { IContactModel } from "../../models/IContactModel";
 
-export interface IAgendaState {
-    contacts: Array<IContactModel>;
+export interface IAgendaContactFileProps {
     contact?: IContactModel;
     panelOpen: boolean;
     edit: boolean;
-    dialogOpen: boolean;
+    closePanel(): void;
+    saveContact(edit: boolean, contact?: IContactModel): void;
 }

@@ -1,0 +1,44 @@
+.agendaContact{
+    padding-left: 0rem;
+    width: 95%;
+    display: flex;
+    margin: 1rem;  
+}
+
+.agendaContactNameContainer{
+    width: 23%;
+    display: flex; 
+}
+
+.agendaContactImage{
+    height: 3rem;
+    width: 3rem;
+}
+
+.agendaContactName{
+    padding: 1rem;
+}
+
+.agendaContactAddress{
+    width: 23%;
+    padding: 1rem;
+}
+
+.agendaContactTelephone{
+    width: 23%;
+    padding: 1rem;
+}
+
+.agendaContactEmail{
+    width: 23%;
+    padding: 1rem;
+}
+
+.agendaContactOptions{
+    width: 8%;
+    display: flex;  
+}
+
+.agendaContactOptionsButton{
+    padding: 1rem !important;
+}

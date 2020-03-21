@@ -2,5 +2,3 @@
 .vs
 .vscode
 .DS_Store
-nginx/log/*.log
-*.swp

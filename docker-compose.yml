@@ -30,7 +30,7 @@ services:
       - agenda_client
     restart: always
     ports:
-      - "8080:80"
+      - "8090:80"
     volumes:
       - "./bin/wait-for-it.sh:/bin/wait-for-it"
       - "./nginx/conf/nginx.conf:/etc/nginx/nginx.conf"
@@ -43,7 +43,7 @@ services:
     environment:
       POSTGRES_PASSWORD: agenda1234
     ports:
-      - "5432:5432"
+      - "8091:5432"
     volumes:
       - "./db/data:/var/lib/postgresql/data"
       - "./db/init:/docker-entrypoint-initdb.d"

@@ -3,11 +3,24 @@ from src.model.contact import Contact
 
 
 def get_all():
-    return [contact.serialize() for contact in db_session().query(Contact).all()]
+    """
+    Get all contacts.
+    :return: List of contacts serialized.
+    """
+    contact_list = db_session().query(Contact).order_by(Contact.id).all()
+    if contact_list:
+        return [contact.serialize() for contact in contact_list]
+    else:
+        return []
 
 
 def get_contact(contact_id):
-    contact = db_session().query(Contact).filter_by(contact_id=contact_id).first()
+    """
+    Get contact given its identifier.
+    :param contact_id: Contact identifier.
+    :return: Contact serialized.
+    """
+    contact = db_session().query(Contact).filter_by(id=contact_id).first()
     if contact:
         return contact.serialize()
     else:
@@ -15,7 +28,24 @@ def get_contact(contact_id):
 
 
 def add(name, last_name, image_url, address, phone_number, email):
-    contact = Contact(name, last_name, image_url, address, phone_number, email)
+    """
+    Add a contact given all its information.
+    :param name: Contact name.
+    :param last_name: Contact last name.
+    :param image_url: Image URL.
+    :param address: Postal address.
+    :param phone_number: Phone number.
+    :param email: Email address.
+    :return: Identifier of the contact added.
+    """
+    contact = Contact(
+        name=name,
+        last_name=last_name,
+        image_url=image_url,
+        address=address,
+        phone_number=phone_number,
+        email=email
+    )
     db_session().add(contact)
     db_session().commit()
     contact_id = contact.id
@@ -23,7 +53,18 @@ def add(name, last_name, image_url, address, phone_number, email):
 
 
 def edit(contact_id, name=None, last_name=None, image_url=None, address=None, phone_number=None, email=None):
-    contact = db_session().query(Contact).filter_by(contact_id=contact_id).first()
+    """
+    Edit a contact given its identifier and the new information.
+    :param contact_id: Contact identifier.
+    :param name: New contact name, if needed.
+    :param last_name: Mew contact last name, if needed.
+    :param image_url: New Image URL, if needed.
+    :param address: New postal address, if needed.
+    :param phone_number: New phone number, if needed.
+    :param email: New email address, if needed.
+    :return: True if the contact was edited successfully, False otherwise.
+    """
+    contact = db_session().query(Contact).filter_by(id=contact_id).first()
     if contact:
         contact.name = contact.name if name is None else name
         contact.last_name = contact.last_name if last_name is None else last_name
@@ -38,9 +79,15 @@ def edit(contact_id, name=None, last_name=None, image_url=None, address=None, ph
 
 
 def delete(contact_id):
-    contact = db_session().query(Contact).filter_by(contact_id=contact_id).first()
+    """
+    Delete a contact given its identifier.
+    :param contact_id: Contact identifier.
+    :return: True if the contact was deleted successfully, False otherwise.
+    """
+    contact = db_session().query(Contact).filter_by(id=contact_id).first()
     if contact:
-        contact.delete()
+        db_session().delete(contact)
+        db_session().commit()
         return True
     else:
         return False

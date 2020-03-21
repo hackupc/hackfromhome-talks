@@ -6,6 +6,15 @@ from src.config import DB_USER, DB_PASSWORD, DB_DB, DB_HOST, DB_PORT
 
 
 def connect(user, password, database, host, port):
+    """
+    Connect to the PostgresSQL database.
+    :param user: Database user.
+    :param password: User password.
+    :param database: Database name.
+    :param host: Host name.
+    :param port: Port number.
+    :return: Database engine and meta.
+    """
     url_string = 'postgresql://{}:{}@{}:{}/{}'
     url = url_string.format(user, password, host, port, database)
     _engine = create_engine(url, client_encoding='utf8')
