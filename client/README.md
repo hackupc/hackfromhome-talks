@@ -47,7 +47,7 @@ Example of component based architecture:
 
 
 
-![Diagram](.\Diagram.png)
+![Diagram](Diagram.png)
 
 
 
