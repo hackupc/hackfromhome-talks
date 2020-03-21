@@ -2,8 +2,18 @@
     margin: 4rem;
 }
 
+.agendaHeaderConteiner{
+    display: flex;
+    justify-content: space-between;
+}
+
 .agendaTitle{
     margin: 1rem;
+}
+
+.agendaAddContact{
+    height: 3rem;
+    margin: 1rem !important;
 }
 
 .agendaTable{
@@ -48,6 +58,6 @@
 }
 
 .agendaTableBody{
-    max-height: 43rem;
+    max-height: 40rem;
     overflow-y: scroll;
 }

@@ -228,13 +228,13 @@ export default class Service implements IService {
         });
     }
 
-    public saveContacts(contact: IContactModel): Promise<string> {
+    public saveContact(contact: IContactModel): Promise<string> {
         return new Promise<string>((resolve, reject)=>{
-
+            resolve("OK");
         });
     }
 
-    public deleteContacts(contact_id: number): Promise<string> {
+    public deleteContact(contact_id: number): Promise<string> {
         return new Promise<string>((resolve, reject)=>{
 
         });
